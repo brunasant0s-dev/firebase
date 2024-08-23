@@ -1,20 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import realizarLogin from './screens/realizarLogin'; // Certifique-se de que o caminho esteja correto
+import paginaPrincipal from './screens/PaginaPrincipal'; // Certifique-se de que o caminho esteja correto
+import JogadoresListar from './screens/JogadoresListar';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+const Stack = createNativeStackNavigator();
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const App = () => (
+    <NavigationContainer>
+        <Stack.Navigator initialRouteName="realizarLogin">
+            <Stack.Screen 
+                name="realizarLogin" 
+                component={realizarLogin} 
+                options={{ title: 'Login' }} // Aqui você pode customizar o título da tela
+            />
+            <Stack.Screen 
+                name="paginaPrincipal" 
+                component={paginaPrincipal} 
+                options={{ title: 'página Principal' }} // Aqui você pode customizar o título da tela
+            />
+            <Stack.Screen 
+                name="jogadoresListar"
+                component={JogadoresListar} 
+                options={{ title: 'Listar jogador' }} // Aqui você pode customizar o título da tela
+            />
+        </Stack.Navigator>
+    </NavigationContainer>
+);
+
+export default App;
